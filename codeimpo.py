@@ -23,7 +23,7 @@ st.pyplot(fig)
 
 with st.sidebar:
     st.write("opciones")
-    dev = st.selectbox("opciones", "paises", "desastre")
+    dev = st.selectbox("opciones", "países", "desastre")
 st.subheader("Gráfico de pastel (Países)")
 
 pie_data = df["country"].value_counts()
@@ -33,4 +33,5 @@ ax2.pie(pie_data, labels=pie_data.index, autopct="%1.1f%%")
 ax2.set_title("Distribución por país")
 
 st.pyplot(fig2)
+
 
