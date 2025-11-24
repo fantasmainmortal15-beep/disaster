@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
-df = pd.read_csv("global_disaster_response_2018_2024.csv")
+df = pd.read_csv("global_disaster_response_2018_2024 (1).csv")
 
 with st.sidebar:
     st.write("opciones")
@@ -22,4 +22,5 @@ col_hist = st.selectbox("Selecciona columna numérica", numeric_columns)
 fig, ax = plt.subplots()
 ax.hist(df[col_hist].dropna(), bins=20)
 ax.set_title(f"Histograma de {col_hist}")
+
 st.pyplot(fig)
