@@ -47,7 +47,7 @@ elif opcion_pie == "Tipos de desastre":
     st.pyplot(fig3)
 
 
-st.title("Gráfico de barras: Tipos de desastres por país")
+st.write("Gráfico de barras: Tipos de desastres por país")
 
 st.subheader("Vista previa de los datos")
 
