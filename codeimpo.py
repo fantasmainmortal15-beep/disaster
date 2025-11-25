@@ -24,9 +24,9 @@ ax.set_title(f"Histograma de {col_hist}")
 st.pyplot(fig)
 
 with st.sidebar:
-    st.write("seleccion")
+    seleccion = st.write("seleccion")
     opcion =  ["países", "tipo de desastres"]
-    seleciond = st.selectbox("selecion","opcion")
+    seleciond = st.selectbox( seleccion ,opcion)
 
     
 st.subheader("Gráfico de pastel (Países)")
@@ -48,9 +48,6 @@ ax3.pie(pie_data2, labels=pie_data2.index, autopct="%1.1f%%")
 ax3.set_title("Distribución por tipo de desastre")
 
 st.pyplot(fig3)
-
-
-
 
 
 
