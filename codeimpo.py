@@ -47,4 +47,26 @@ elif opcion_pie == "Tipos de desastre":
     st.pyplot(fig3)
 
 
+st.title("Gráfico de barras: Tipos de desastres por país")
+
+st.subheader("Vista previa de los datos")
+
+st.dataframe(df.head())
+
+grouped = df.groupby(["country", "disaster_type"]).size().reset_index(name="count")
+st.subheader("Datos agrupados (país - tipo de desastre)")
+st.dataframe(grouped)
+
+st.subheader("Gráfico de barras: cantidad de desastres por país y tipo")
+fig, ax = plt.subplots(figsize=(12, 6))
+
+pivot_table = grouped.pivot(index="country", columns="disaster_type", values="count").fillna(0)
+pivot_table.plot(kind="bar", ax=ax)
+ax.set_title("Tipos de desastres por país")
+ax.set_xlabel("País")
+ax.set_ylabel("Cantidad de desastres")
+ax.legend(title="Tipo de desastre", bbox_to_anchor=(1.05, 1), loc="upper left")
+
+st.pyplot(fig)
+
 
