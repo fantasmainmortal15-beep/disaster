@@ -24,31 +24,27 @@ ax.set_title(f"Histograma de {col_hist}")
 st.pyplot(fig)
 
 with st.sidebar:
-    d = st.write("seleccion")
-    seleccion = df.groupby("pie_data, pie_data2")
-    opcion =  ["países", "tipo de desastres"]
-    seleciond = st.selectbox( seleccion ,opcion)
+    opcion_pie = st.selectbox(
+        "Selecciona gráfico de pastel:",
+        ["Países", "Tipos de desastre"])
+ 
+st.subheader(f"Gráfico de pastel: {opcion_pie}")
 
+if opcion_pie == "Países":
+    pie_data = df["country"].value_counts()
 
+    fig2, ax2 = plt.subplots()
+    ax2.pie(pie_data, labels=pie_data.index, autopct="%1.1f%%")
+    ax2.set_title("Distribución por país")
+    st.pyplot(fig2)
 
-st.subheader("Gráfico de pastel (Países)")
+elif opcion_pie == "Tipos de desastre":
+    pie_data2 = df["disaster_type"].value_counts()
 
-pie_data = df["country"].value_counts()
+    fig3, ax3 = plt.subplots()
+    ax3.pie(pie_data2, labels=pie_data2.index, autopct="%1.1f%%")
+    ax3.set_title("Distribución por tipo de desastre")
+    st.pyplot(fig3)
 
-fig2, ax2 = plt.subplots()
-ax2.pie(pie_data, labels=pie_data.index, autopct="%1.1f%%")
-ax2.set_title("Distribución por país")
-
-st.pyplot(fig2)
-
-st.subheader("Gráfico de pastel (Tipo de desastre)")
-
-pie_data2 = df["disaster_type"].value_counts()
-
-fig3, ax3 = plt.subplots()
-ax3.pie(pie_data2, labels=pie_data2.index, autopct="%1.1f%%")
-ax3.set_title("Distribución por tipo de desastre")
-
-st.pyplot(fig3)
 
 
