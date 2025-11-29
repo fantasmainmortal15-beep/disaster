@@ -4,7 +4,7 @@ import streamlit as st
 
 df = pd.read_csv("global_disaster_response_2018_2024 (1).csv")
 
-st.write("desastres naturales")
+st.subheader("desastres naturales")
 st.title = ("desastres naturales")
 st.image("desaster.png", use_column_width=True)
 
@@ -93,6 +93,7 @@ ax_violin.set_xticklabels(df["disaster_type"].unique(), rotation=45)
 ax_violin.set_ylabel(col_violin)
 
 st.pyplot(fig_violin)
+
 
 
 
