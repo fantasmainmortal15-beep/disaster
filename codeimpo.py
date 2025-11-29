@@ -4,7 +4,10 @@ import streamlit as st
 
 df = pd.read_csv("global_disaster_response_2018_2024 (1).csv")
 
+
 st.title = ("desastres naturales")
+st.title("Desastres Naturales")
+st.image("desaster.png", use_column_width=True)
 
 with st.sidebar:
     st.write("opciones")
@@ -14,8 +17,7 @@ with st.sidebar:
 st.subheader("Histograma basado en tus datos")
 numeric_columns = [
         "severity_index", "casualties", "economic_loss_usd", "response_time_hours",
-        "aid_amount_usd", "response_efficiency_score", "recovery_days",
-        "latitude", "longitude"
+        "aid_amount_usd"
     ]
 col_hist = st.selectbox("Selecciona columna numérica", numeric_columns)
 fig, ax = plt.subplots()
@@ -68,5 +70,29 @@ ax.set_ylabel("Cantidad de desastres")
 ax.legend(title="Tipo de desastre", bbox_to_anchor=(1.05, 1), loc="upper left")
 
 st.pyplot(fig)
+
+
+
+st.subheader("Violin Plot: distribución de variables numéricas por tipo de desastre")
+
+col_violin = st.selectbox(
+    "Selecciona columna numérica para el Violin Plot:",
+    numeric_columns,
+    key="violin_selectbox"
+)
+
+fig_violin, ax_violin = plt.subplots(figsize=(10, 5))
+
+data_violin = [df[df["disaster_type"] == d][col_violin].dropna()
+               for d in df["disaster_type"].unique()]
+
+ax_violin.violinplot(data_violin, showmeans=True, showmedians=True)
+
+ax_violin.set_title(f"Distribución de {col_violin} por tipo de desastre")
+ax_violin.set_xticks(range(1, len(df['disaster_type'].unique()) + 1))
+ax_violin.set_xticklabels(df["disaster_type"].unique(), rotation=45)
+ax_violin.set_ylabel(col_violin)
+
+st.pyplot(fig_violin)
 
 
